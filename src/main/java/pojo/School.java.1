@@ -1,0 +1,75 @@
+package pojo;
+
+import java.util.Date;
+
+public class School {
+    private Integer schoolid;
+
+    private String schMajorName;
+
+    private Integer schMajorId;
+
+    private String schMajorSign;
+
+    private Date schMajorSubTime;
+
+    private String schName;
+
+    private String schDesc;
+
+    public Integer getSchoolid() {
+        return schoolid;
+    }
+
+    public void setSchoolid(Integer schoolid) {
+        this.schoolid = schoolid;
+    }
+
+    public String getSchMajorName() {
+        return schMajorName;
+    }
+
+    public void setSchMajorName(String schMajorName) {
+        this.schMajorName = schMajorName == null ? null : schMajorName.trim();
+    }
+
+    public Integer getSchMajorId() {
+        return schMajorId;
+    }
+
+    public void setSchMajorId(Integer schMajorId) {
+        this.schMajorId = schMajorId;
+    }
+
+    public String getSchMajorSign() {
+        return schMajorSign;
+    }
+
+    public void setSchMajorSign(String schMajorSign) {
+        this.schMajorSign = schMajorSign == null ? null : schMajorSign.trim();
+    }
+
+    public Date getSchMajorSubTime() {
+        return schMajorSubTime;
+    }
+
+    public void setSchMajorSubTime(Date schMajorSubTime) {
+        this.schMajorSubTime = schMajorSubTime;
+    }
+
+    public String getSchName() {
+        return schName;
+    }
+
+    public void setSchName(String schName) {
+        this.schName = schName == null ? null : schName.trim();
+    }
+
+    public String getSchDesc() {
+        return schDesc;
+    }
+
+    public void setSchDesc(String schDesc) {
+        this.schDesc = schDesc == null ? null : schDesc.trim();
+    }
+}

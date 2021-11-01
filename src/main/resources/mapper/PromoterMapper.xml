@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.PromoterMapper" >
+  <resultMap id="BaseResultMap" type="pojo.Promoter" >
+    <id column="promo_id" property="promoId" jdbcType="INTEGER" />
+    <result column="login_id" property="loginId" jdbcType="INTEGER" />
+    <result column="login_name" property="loginName" jdbcType="VARCHAR" />
+    <result column="promo_name" property="promoName" jdbcType="VARCHAR" />
+    <result column="promo_amount" property="promoAmount" jdbcType="INTEGER" />
+    <result column="promo_price" property="promoPrice" jdbcType="INTEGER" />
+    <result column="promo_table_false" property="promoTableFalse" jdbcType="INTEGER" />
+    <result column="promo_table_true" property="promoTableTrue" jdbcType="INTEGER" />
+    <result column="promo_add_sub_time" property="promoAddSubTime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    promo_id, login_id, login_name, promo_name, promo_amount, promo_price, promo_table_false, 
+    promo_table_true, promo_add_sub_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="pojo.PromoterExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from promoter
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from promoter
+    where promo_id = #{promoId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from promoter
+    where promo_id = #{promoId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="pojo.PromoterExample" >
+    delete from promoter
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="pojo.Promoter" >
+    insert into promoter (promo_id, login_id, login_name, 
+      promo_name, promo_amount, promo_price, 
+      promo_table_false, promo_table_true, promo_add_sub_time
+      )
+    values (#{promoId,jdbcType=INTEGER}, #{loginId,jdbcType=INTEGER}, #{loginName,jdbcType=VARCHAR}, 
+      #{promoName,jdbcType=VARCHAR}, #{promoAmount,jdbcType=INTEGER}, #{promoPrice,jdbcType=INTEGER}, 
+      #{promoTableFalse,jdbcType=INTEGER}, #{promoTableTrue,jdbcType=INTEGER}, #{promoAddSubTime,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="pojo.Promoter" >
+    insert into promoter
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="promoId != null" >
+        promo_id,
+      </if>
+      <if test="loginId != null" >
+        login_id,
+      </if>
+      <if test="loginName != null" >
+        login_name,
+      </if>
+      <if test="promoName != null" >
+        promo_name,
+      </if>
+      <if test="promoAmount != null" >
+        promo_amount,
+      </if>
+      <if test="promoPrice != null" >
+        promo_price,
+      </if>
+      <if test="promoTableFalse != null" >
+        promo_table_false,
+      </if>
+      <if test="promoTableTrue != null" >
+        promo_table_true,
+      </if>
+      <if test="promoAddSubTime != null" >
+        promo_add_sub_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="promoId != null" >
+        #{promoId,jdbcType=INTEGER},
+      </if>
+      <if test="loginId != null" >
+        #{loginId,jdbcType=INTEGER},
+      </if>
+      <if test="loginName != null" >
+        #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="promoName != null" >
+        #{promoName,jdbcType=VARCHAR},
+      </if>
+      <if test="promoAmount != null" >
+        #{promoAmount,jdbcType=INTEGER},
+      </if>
+      <if test="promoPrice != null" >
+        #{promoPrice,jdbcType=INTEGER},
+      </if>
+      <if test="promoTableFalse != null" >
+        #{promoTableFalse,jdbcType=INTEGER},
+      </if>
+      <if test="promoTableTrue != null" >
+        #{promoTableTrue,jdbcType=INTEGER},
+      </if>
+      <if test="promoAddSubTime != null" >
+        #{promoAddSubTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="pojo.PromoterExample" resultType="java.lang.Integer" >
+    select count(*) from promoter
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update promoter
+    <set >
+      <if test="record.promoId != null" >
+        promo_id = #{record.promoId,jdbcType=INTEGER},
+      </if>
+      <if test="record.loginId != null" >
+        login_id = #{record.loginId,jdbcType=INTEGER},
+      </if>
+      <if test="record.loginName != null" >
+        login_name = #{record.loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.promoName != null" >
+        promo_name = #{record.promoName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.promoAmount != null" >
+        promo_amount = #{record.promoAmount,jdbcType=INTEGER},
+      </if>
+      <if test="record.promoPrice != null" >
+        promo_price = #{record.promoPrice,jdbcType=INTEGER},
+      </if>
+      <if test="record.promoTableFalse != null" >
+        promo_table_false = #{record.promoTableFalse,jdbcType=INTEGER},
+      </if>
+      <if test="record.promoTableTrue != null" >
+        promo_table_true = #{record.promoTableTrue,jdbcType=INTEGER},
+      </if>
+      <if test="record.promoAddSubTime != null" >
+        promo_add_sub_time = #{record.promoAddSubTime,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update promoter
+    set promo_id = #{record.promoId,jdbcType=INTEGER},
+      login_id = #{record.loginId,jdbcType=INTEGER},
+      login_name = #{record.loginName,jdbcType=VARCHAR},
+      promo_name = #{record.promoName,jdbcType=VARCHAR},
+      promo_amount = #{record.promoAmount,jdbcType=INTEGER},
+      promo_price = #{record.promoPrice,jdbcType=INTEGER},
+      promo_table_false = #{record.promoTableFalse,jdbcType=INTEGER},
+      promo_table_true = #{record.promoTableTrue,jdbcType=INTEGER},
+      promo_add_sub_time = #{record.promoAddSubTime,jdbcType=DATE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="pojo.Promoter" >
+    update promoter
+    <set >
+      <if test="loginId != null" >
+        login_id = #{loginId,jdbcType=INTEGER},
+      </if>
+      <if test="loginName != null" >
+        login_name = #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="promoName != null" >
+        promo_name = #{promoName,jdbcType=VARCHAR},
+      </if>
+      <if test="promoAmount != null" >
+        promo_amount = #{promoAmount,jdbcType=INTEGER},
+      </if>
+      <if test="promoPrice != null" >
+        promo_price = #{promoPrice,jdbcType=INTEGER},
+      </if>
+      <if test="promoTableFalse != null" >
+        promo_table_false = #{promoTableFalse,jdbcType=INTEGER},
+      </if>
+      <if test="promoTableTrue != null" >
+        promo_table_true = #{promoTableTrue,jdbcType=INTEGER},
+      </if>
+      <if test="promoAddSubTime != null" >
+        promo_add_sub_time = #{promoAddSubTime,jdbcType=DATE},
+      </if>
+    </set>
+    where promo_id = #{promoId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="pojo.Promoter" >
+    update promoter
+    set login_id = #{loginId,jdbcType=INTEGER},
+      login_name = #{loginName,jdbcType=VARCHAR},
+      promo_name = #{promoName,jdbcType=VARCHAR},
+      promo_amount = #{promoAmount,jdbcType=INTEGER},
+      promo_price = #{promoPrice,jdbcType=INTEGER},
+      promo_table_false = #{promoTableFalse,jdbcType=INTEGER},
+      promo_table_true = #{promoTableTrue,jdbcType=INTEGER},
+      promo_add_sub_time = #{promoAddSubTime,jdbcType=DATE}
+    where promo_id = #{promoId,jdbcType=INTEGER}
+  </update>
+</mapper>

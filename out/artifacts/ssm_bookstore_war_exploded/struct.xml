@@ -1,0 +1,7 @@
+<action name ="dispatcher" class="WEB-INF.action.DispatcherAction" >
+
+    <result name ="goLogin">WEB-INF/jsp/userLogin.jsp</result >
+
+    <result name ="input">/index.jsp</result >
+
+</action >

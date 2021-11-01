@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.SchoolMapper" >
+  <resultMap id="BaseResultMap" type="pojo.School" >
+    <id column="schoolid" property="schoolid" jdbcType="INTEGER" />
+    <result column="sch_major_name" property="schMajorName" jdbcType="VARCHAR" />
+    <result column="sch_major_id" property="schMajorId" jdbcType="INTEGER" />
+    <result column="sch_major_sign" property="schMajorSign" jdbcType="VARCHAR" />
+    <result column="sch_major_sub_time" property="schMajorSubTime" jdbcType="DATE" />
+    <result column="sch_name" property="schName" jdbcType="VARCHAR" />
+    <result column="sch_desc" property="schDesc" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    schoolid, sch_major_name, sch_major_id, sch_major_sign, sch_major_sub_time, sch_name, 
+    sch_desc
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="pojo.SchoolExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from school
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from school
+    where schoolid = #{schoolid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from school
+    where schoolid = #{schoolid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="pojo.SchoolExample" >
+    delete from school
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="pojo.School" >
+    insert into school (schoolid, sch_major_name, sch_major_id, 
+      sch_major_sign, sch_major_sub_time, sch_name, 
+      sch_desc)
+    values (#{schoolid,jdbcType=INTEGER}, #{schMajorName,jdbcType=VARCHAR}, #{schMajorId,jdbcType=INTEGER}, 
+      #{schMajorSign,jdbcType=VARCHAR}, #{schMajorSubTime,jdbcType=DATE}, #{schName,jdbcType=VARCHAR}, 
+      #{schDesc,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="pojo.School" >
+    insert into school
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="schoolid != null" >
+        schoolid,
+      </if>
+      <if test="schMajorName != null" >
+        sch_major_name,
+      </if>
+      <if test="schMajorId != null" >
+        sch_major_id,
+      </if>
+      <if test="schMajorSign != null" >
+        sch_major_sign,
+      </if>
+      <if test="schMajorSubTime != null" >
+        sch_major_sub_time,
+      </if>
+      <if test="schName != null" >
+        sch_name,
+      </if>
+      <if test="schDesc != null" >
+        sch_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="schoolid != null" >
+        #{schoolid,jdbcType=INTEGER},
+      </if>
+      <if test="schMajorName != null" >
+        #{schMajorName,jdbcType=VARCHAR},
+      </if>
+      <if test="schMajorId != null" >
+        #{schMajorId,jdbcType=INTEGER},
+      </if>
+      <if test="schMajorSign != null" >
+        #{schMajorSign,jdbcType=VARCHAR},
+      </if>
+      <if test="schMajorSubTime != null" >
+        #{schMajorSubTime,jdbcType=DATE},
+      </if>
+      <if test="schName != null" >
+        #{schName,jdbcType=VARCHAR},
+      </if>
+      <if test="schDesc != null" >
+        #{schDesc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="pojo.SchoolExample" resultType="java.lang.Integer" >
+    select count(*) from school
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update school
+    <set >
+      <if test="record.schoolid != null" >
+        schoolid = #{record.schoolid,jdbcType=INTEGER},
+      </if>
+      <if test="record.schMajorName != null" >
+        sch_major_name = #{record.schMajorName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.schMajorId != null" >
+        sch_major_id = #{record.schMajorId,jdbcType=INTEGER},
+      </if>
+      <if test="record.schMajorSign != null" >
+        sch_major_sign = #{record.schMajorSign,jdbcType=VARCHAR},
+      </if>
+      <if test="record.schMajorSubTime != null" >
+        sch_major_sub_time = #{record.schMajorSubTime,jdbcType=DATE},
+      </if>
+      <if test="record.schName != null" >
+        sch_name = #{record.schName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.schDesc != null" >
+        sch_desc = #{record.schDesc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update school
+    set schoolid = #{record.schoolid,jdbcType=INTEGER},
+      sch_major_name = #{record.schMajorName,jdbcType=VARCHAR},
+      sch_major_id = #{record.schMajorId,jdbcType=INTEGER},
+      sch_major_sign = #{record.schMajorSign,jdbcType=VARCHAR},
+      sch_major_sub_time = #{record.schMajorSubTime,jdbcType=DATE},
+      sch_name = #{record.schName,jdbcType=VARCHAR},
+      sch_desc = #{record.schDesc,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="pojo.School" >
+    update school
+    <set >
+      <if test="schMajorName != null" >
+        sch_major_name = #{schMajorName,jdbcType=VARCHAR},
+      </if>
+      <if test="schMajorId != null" >
+        sch_major_id = #{schMajorId,jdbcType=INTEGER},
+      </if>
+      <if test="schMajorSign != null" >
+        sch_major_sign = #{schMajorSign,jdbcType=VARCHAR},
+      </if>
+      <if test="schMajorSubTime != null" >
+        sch_major_sub_time = #{schMajorSubTime,jdbcType=DATE},
+      </if>
+      <if test="schName != null" >
+        sch_name = #{schName,jdbcType=VARCHAR},
+      </if>
+      <if test="schDesc != null" >
+        sch_desc = #{schDesc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where schoolid = #{schoolid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="pojo.School" >
+    update school
+    set sch_major_name = #{schMajorName,jdbcType=VARCHAR},
+      sch_major_id = #{schMajorId,jdbcType=INTEGER},
+      sch_major_sign = #{schMajorSign,jdbcType=VARCHAR},
+      sch_major_sub_time = #{schMajorSubTime,jdbcType=DATE},
+      sch_name = #{schName,jdbcType=VARCHAR},
+      sch_desc = #{schDesc,jdbcType=VARCHAR}
+    where schoolid = #{schoolid,jdbcType=INTEGER}
+  </update>
+</mapper>

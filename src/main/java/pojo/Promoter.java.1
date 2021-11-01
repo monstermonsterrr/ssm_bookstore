@@ -1,0 +1,95 @@
+package pojo;
+
+import java.util.Date;
+
+public class Promoter {
+    private Integer promoId;
+
+    private Integer loginId;
+
+    private String loginName;
+
+    private String promoName;
+
+    private Integer promoAmount;
+
+    private Integer promoPrice;
+
+    private Integer promoTableFalse;
+
+    private Integer promoTableTrue;
+
+    private Date promoAddSubTime;
+
+    public Integer getPromoId() {
+        return promoId;
+    }
+
+    public void setPromoId(Integer promoId) {
+        this.promoId = promoId;
+    }
+
+    public Integer getLoginId() {
+        return loginId;
+    }
+
+    public void setLoginId(Integer loginId) {
+        this.loginId = loginId;
+    }
+
+    public String getLoginName() {
+        return loginName;
+    }
+
+    public void setLoginName(String loginName) {
+        this.loginName = loginName == null ? null : loginName.trim();
+    }
+
+    public String getPromoName() {
+        return promoName;
+    }
+
+    public void setPromoName(String promoName) {
+        this.promoName = promoName == null ? null : promoName.trim();
+    }
+
+    public Integer getPromoAmount() {
+        return promoAmount;
+    }
+
+    public void setPromoAmount(Integer promoAmount) {
+        this.promoAmount = promoAmount;
+    }
+
+    public Integer getPromoPrice() {
+        return promoPrice;
+    }
+
+    public void setPromoPrice(Integer promoPrice) {
+        this.promoPrice = promoPrice;
+    }
+
+    public Integer getPromoTableFalse() {
+        return promoTableFalse;
+    }
+
+    public void setPromoTableFalse(Integer promoTableFalse) {
+        this.promoTableFalse = promoTableFalse;
+    }
+
+    public Integer getPromoTableTrue() {
+        return promoTableTrue;
+    }
+
+    public void setPromoTableTrue(Integer promoTableTrue) {
+        this.promoTableTrue = promoTableTrue;
+    }
+
+    public Date getPromoAddSubTime() {
+        return promoAddSubTime;
+    }
+
+    public void setPromoAddSubTime(Date promoAddSubTime) {
+        this.promoAddSubTime = promoAddSubTime;
+    }
+}
